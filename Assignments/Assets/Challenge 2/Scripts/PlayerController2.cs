@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerControllerX : MonoBehaviour
+public class PlayerControllerX2 : MonoBehaviour
 {
     public GameObject dogPrefab;
     float dogCooldown = 2.0f;
