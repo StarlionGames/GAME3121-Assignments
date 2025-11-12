@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerControllerX : MonoBehaviour
+public class PlayerControllerX_3 : MonoBehaviour
 {
     public bool gameOver;
 
     public float floatForce;
     private float gravityModifier = 1.5f;
-    private Rigidbody playerRb;
+
+    [SerializeField] InputActionAsset _actions;
+    InputAction _floatAction => _actions.FindAction("Bounce");
+
+    private Rigidbody playerRb => GetComponent<Rigidbody>();
 
     public ParticleSystem explosionParticle;
     public ParticleSystem fireworksParticle;
@@ -28,17 +33,13 @@ public class PlayerControllerX : MonoBehaviour
         playerRb.AddForce(Vector3.up * 5, ForceMode.Impulse);
 
     }
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        // While space is pressed and player is low enough, float up
-        if (Input.GetKey(KeyCode.Space) && !gameOver)
+        if (_floatAction.IsPressed())
         {
-            playerRb.AddForce(Vector3.up * floatForce);
+            OnBounce();
         }
     }
-
     private void OnCollisionEnter(Collision other)
     {
         // if player collides with bomb, explode and set gameOver to true
@@ -49,7 +50,7 @@ public class PlayerControllerX : MonoBehaviour
             gameOver = true;
             Debug.Log("Game Over!");
             Destroy(other.gameObject);
-        } 
+        }
 
         // if player collides with money, fireworks
         else if (other.gameObject.CompareTag("Money"))
@@ -59,7 +60,12 @@ public class PlayerControllerX : MonoBehaviour
             Destroy(other.gameObject);
 
         }
-
     }
+    public void OnBounce()
+    {
+        if (gameOver) { return; }
 
+        Debug.Log("Pressing space");
+        playerRb.AddForce(Vector3.up * floatForce, ForceMode.Force);
+    }
 }

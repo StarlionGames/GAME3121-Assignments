@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManagerX : MonoBehaviour
+public class SpawnManager4 : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject powerupPrefab;
@@ -63,7 +63,7 @@ public class SpawnManagerX : MonoBehaviour
     void ResetPlayerPosition ()
     {
         player.transform.position = new Vector3(0, 1, -7);
-        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
     }
