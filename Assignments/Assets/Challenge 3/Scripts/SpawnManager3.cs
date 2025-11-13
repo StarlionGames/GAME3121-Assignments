@@ -13,12 +13,11 @@ public class SpawnManager3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("PrawnsObject", spawnDelay, spawnInterval);
+        InvokeRepeating("SpawnObjects", spawnDelay, spawnInterval);
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerControllerX_3>();
     }
-
     // Spawn obstacles
-    void SpawnObjects ()
+    void SpawnObjects()
     {
         // Set random spawn location and random object index
         Vector3 spawnLocation = new Vector3(30, Random.Range(5, 15), 0);
