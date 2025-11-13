@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "name": "CH3",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "96f76b9f-d34f-4e00-a81a-22bea96ec2f3",
+            "actions": [
+                {
+                    "name": "Bounce",
+                    "type": "Button",
+                    "id": "42ae428f-2243-45e4-8e66-d419c5a0a149",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "af7f5c69-e8e0-4756-80d0-4590b95ecf09",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Tap,Hold",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Bounce",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
