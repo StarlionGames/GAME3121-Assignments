@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnManager4 : MonoBehaviour
 {
+    [Header("Spawnable Prefabs")]
     public GameObject enemyPrefab;
     public GameObject powerupPrefab;
 
@@ -11,16 +12,18 @@ public class SpawnManager4 : MonoBehaviour
     private float spawnZMin = 15; // set min spawn Z
     private float spawnZMax = 25; // set max spawn Z
 
+    [Header("Enemy Trackers")]
     public int enemyCount;
     public int waveCount = 1;
 
-
+    [Header("Player Objects")]
+    [SerializeField] Transform PlayerGoal;
     public GameObject player; 
 
     // Update is called once per frame
     void Update()
     {
-        enemyCount = GameObject.FindGameObjectsWithTag("Powerup").Length;
+        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
         if (enemyCount == 0)
         {
@@ -49,9 +52,11 @@ public class SpawnManager4 : MonoBehaviour
         }
 
         // Spawn number of enemy balls based on wave number
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+            GameObject enemy = Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+            enemy.GetComponent<EnemyX>().SetGoal(PlayerGoal);
+            enemy.GetComponent<EnemyX>().SetSpeed(enemiesToSpawn);
         }
 
         waveCount++;

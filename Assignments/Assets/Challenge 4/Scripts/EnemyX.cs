@@ -6,7 +6,7 @@ public class EnemyX : MonoBehaviour
 {
     public float speed;
     private Rigidbody enemyRb;
-    private GameObject playerGoal;
+    Transform playerGoal;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +18,19 @@ public class EnemyX : MonoBehaviour
     void Update()
     {
         // Set enemy direction towards player goal and move there
-        Vector3 lookDirection = (playerGoal.transform.position - transform.position).normalized;
+        Vector3 lookDirection = (playerGoal.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed * Time.deltaTime);
 
     }
-
+    public void SetGoal(Transform goal)
+    {
+        playerGoal = goal;
+    }
+    public void SetSpeed(float speedMult)
+    {
+        float s = 0.5f * speedMult;
+        speed *= s;
+    }
     private void OnCollisionEnter(Collision other)
     {
         // If enemy collides with either goal, destroy it
